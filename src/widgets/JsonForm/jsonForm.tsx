@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from 'react'
+import { ChangeEvent, FC, memo, useState } from 'react'
 import { Alert, Button, Input } from 'antd'
 import { JsonValidator } from '../../shared/services/JsonValidator'
 import { LocalStorageService } from '../../shared/services/LocalStorageService'
@@ -6,7 +6,7 @@ import { LocalStorageService } from '../../shared/services/LocalStorageService'
 const initialJson = LocalStorageService.getJson() || ''
 const initialParsed = JsonValidator.tryParseJson(initialJson)
 
-export const JsonForm: FC = () => {
+export const JsonForm: FC = memo(() => {
   const [json, setJson] = useState<string>(initialJson)
   const [parsedJson, setParsedJson] = useState<unknown>(initialParsed.content)
   const [error, setError] = useState<string>(initialParsed.error || '')
@@ -37,4 +37,4 @@ export const JsonForm: FC = () => {
       Log JSON
     </Button>
   </div>
-}
+})
