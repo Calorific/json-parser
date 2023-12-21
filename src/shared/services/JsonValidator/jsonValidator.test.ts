@@ -12,7 +12,7 @@ describe('tryParseJson', () => {
     const res = tryParseJson(json)
 
     // Assert
-    expect(res).toBe(undefined)
+    expect(res.content).toBe(undefined)
   })
 
   it('returns undefined for only one quotation mark', () => {
@@ -23,7 +23,7 @@ describe('tryParseJson', () => {
     const res = tryParseJson(json)
 
     // Assert
-    expect(res).toBe(undefined)
+    expect(res.content).toBe(undefined)
   })
 
   it('returns undefined for only one quotation mark', () => {
@@ -34,7 +34,7 @@ describe('tryParseJson', () => {
     const res = tryParseJson(json)
 
     // Assert
-    expect(res).toBe(undefined)
+    expect(res.content).toBe(undefined)
   })
 
   it('returns parsed object for correct json', () => {
@@ -45,6 +45,6 @@ describe('tryParseJson', () => {
     const res = tryParseJson(json)
 
     // Assert
-    expect(res).toEqual({ name: 'name' })
+    expect(res.content).toEqual({ name: 'name' })
   })
 })

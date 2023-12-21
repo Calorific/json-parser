@@ -1,11 +1,17 @@
-import { IJsonValidator } from './types.ts'
+import { IJsonValidator, ValidationResult } from './types.ts'
 
 export const JsonValidator: IJsonValidator = {
-  tryParseJson: <T>(json: string): T | undefined => {
+  tryParseJson: <T>(json: string): ValidationResult<T> => {
     try {
-      return JSON.parse(json)
+      return {
+        content: JSON.parse(json),
+        error: null
+      }
     } catch (e) {
-      return undefined
+      return {
+        content: undefined,
+        error: (e as SyntaxError).message
+      }
     }
   }
 }
